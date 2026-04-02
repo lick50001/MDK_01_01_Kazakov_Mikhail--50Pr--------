@@ -1,6 +1,5 @@
 ﻿using KeyPass_Kazakov.Classes;
 using KeyPass_Kazakov.Models;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KeyPass_Kazakov.Controllers
@@ -14,7 +13,7 @@ namespace KeyPass_Kazakov.Controllers
             this.dbManager = new DatabaseManager();
 
         /// <summary>
-        /// Получение записей хранилища для польщователя
+        /// Получение записей хранилища для пользователя
         /// </summary>
         /// <param name="token">JWT токен из заголовка запроса</param>
         /// <returs>Список записей хранилища в формате DTO(без информации о пользователе)</returs>
@@ -29,7 +28,7 @@ namespace KeyPass_Kazakov.Controllers
                 if (IdUser == null)
                     return StatusCode(401);
                 
-                List<StorageDto> Storages = dbManager.Storages.Where(x => x.Id == IdUser).Select(s => new StorageDto { Id = s.Id, Name = s.Name, Url = s.Url, Login = s.Login, Password = s.Password, }).ToList();
+                List<StorageDto> Storages = dbManager.Storages.Where(x => x.UserId == IdUser).Select(s => new StorageDto { Id = s.Id, Name = s.Name, Url = s.Url, Login = s.Login, Password = s.Password, }).ToList();
                 return Ok(Storages);
             }
             catch (Exception exp)
@@ -49,18 +48,23 @@ namespace KeyPass_Kazakov.Controllers
         {
             try
             {
-                int? IdUser = JwtToken.GetUserIdFromToken (token);
+                int? userId = JwtToken.GetUserIdFromToken(token);
 
-                if (IdUser == null)
-                    return StatusCode(401);
+                if (userId == null)
+                    return Unauthorized("Неверный токен");
 
-                storage.User = dbManager.Users.Where(x => x.Id == IdUser).First();
+                var user = dbManager.Users.Find(userId);
 
-                dbManager.Add(storage);
+                if (user == null)
+                    return NotFound("Пользователь не найден");
+
+                storage.UserId = user.Id;
+                storage.User = null;
+
+                dbManager.Storages.Add(storage);
                 dbManager.SaveChanges();
 
-                storage.User = null;
-                return StatusCode(200, storage);
+                return Ok(storage);
             }
             catch (Exception exp)
             {
@@ -79,23 +83,23 @@ namespace KeyPass_Kazakov.Controllers
         {
             try
             {
-                int? IdUser = JwtToken.GetUserIdFromToken(token);
+                int? userId = JwtToken.GetUserIdFromToken(token);
+                if (userId == null)
+                    return Unauthorized("Неверный токен");
 
-                if (IdUser == null)
-                    return StatusCode(401);
+                var existingStorage = dbManager.Storages
+                    .FirstOrDefault(x => x.Id == storage.Id && x.UserId == userId);
 
-                Storage? uStorage = dbManager.Storages.Where(x => x.Id == storage.Id).FirstOrDefault();
+                if (existingStorage == null)
+                    return NotFound("Запись не найдена или у вас нет прав на её изменение");
 
-                if (uStorage == null)
-                    return StatusCode(404);
-
-                uStorage.Name = storage.Name;
-                uStorage.Url = storage.Url;
-                uStorage.Login = storage.Login;
-                uStorage.Password = storage.Password;
+                existingStorage.Name = storage.Name;
+                existingStorage.Url = storage.Url;
+                existingStorage.Login = storage.Login;
+                existingStorage.Password = storage.Password;
 
                 dbManager.SaveChanges ();
-                return StatusCode(200, uStorage);
+                return StatusCode(200, existingStorage);
             }
             catch (Exception exp)
             {

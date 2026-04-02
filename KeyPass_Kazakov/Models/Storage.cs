@@ -11,7 +11,9 @@ namespace KeyPass_Kazakov.Models
         public string? Url { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        [ForeignKey(UserId)]
-        public User User { get; set; }
+        public int UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
     }
 }

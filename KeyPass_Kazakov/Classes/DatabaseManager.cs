@@ -10,7 +10,7 @@ namespace KeyPass_Kazakov.Classes
         public DatabaseManager() =>
             Database.EnsureCreated();
 
-        public override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseMySql("server=127.0.0.1;uid=root;pwd=;database=Storage;",
             new MySqlServerVersion(new Version(8, 0, 11)));

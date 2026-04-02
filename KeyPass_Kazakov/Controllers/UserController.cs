@@ -41,5 +41,6 @@ namespace KeyPass_Kazakov.Controllers
                 return StatusCode(501, exp.Message);
             }
         }
+
     }
 }

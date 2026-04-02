@@ -1,16 +1,27 @@
+using System.Text.Json.Serialization; // <--- Добавьте этот using в начало файла
+
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddMvc(option => option.EnableEndpointRouting = true);
-builder.Services.AddSwaggerGen(option =>
-{
-    option.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+// ИЗМЕНЕННЫЙ БЛОК:
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
     {
-        Version = "v1",
-        Title = "Инструментарий"
+        // Эта настройка заставляет игнорировать циклические ссылки при сериализации
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+
+        // Опционально: игнорировать свойства с null значениями (чтобы JSON был чище)
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
     });
 
-    string PathFile = Path.Combine(AppContext.BaseDirectory, "KeePass.xml");
-    option.IncludeXmlComments(PathFile);
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(option =>
+{
+    // ... ваш код Swagger ...
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, "KeePass.xml");
+    if (File.Exists(xmlPath))
+    {
+        option.IncludeXmlComments(xmlPath);
+    }
 });
 
 var app = builder.Build();
