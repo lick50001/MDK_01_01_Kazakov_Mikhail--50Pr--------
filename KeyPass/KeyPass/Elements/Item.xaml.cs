@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using KeyPass.Models;
 using KeyPass.Pages;
+using KeyPass.Context;
 
 namespace KeyPass.Elements
 {
@@ -37,11 +39,11 @@ namespace KeyPass.Elements
         }
 
         private void Update(object sender, RoutedEventArgs e) =>
-            MainWindow.init.OpenPages(new Pages.Add(Storage));
+            MainWindow.init.OpenPages(new Pages.Add(storage));
 
         private void Delete(object sender, RoutedEventArgs e)
         {
-            StorageContext.Delete(Storage.Id);
+            StorageContext.Delete(storage.Id);
             this.main.StorageList.Children.Remove(this);
             MessageBox.Show("Данные удалены");
         }

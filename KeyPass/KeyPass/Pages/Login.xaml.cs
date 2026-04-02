@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using KeyPass.Context;
 
 namespace KeyPass.Pages
 {
@@ -32,7 +33,7 @@ namespace KeyPass.Pages
         /// <param name="password">Пароль</param>
         public async Task Auth(string login, string password)
         {
-            string? Token = await UserContext.Login(login, password);
+            string Token = await UserContext.Login(login, password);
             if (Token == null)
                 MessageBox.Show("Логин и пароль указаны не верно");
             else

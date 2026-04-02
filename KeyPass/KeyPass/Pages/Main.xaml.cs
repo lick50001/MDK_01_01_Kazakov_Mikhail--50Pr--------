@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using KeyPass.Context;
 using KeyPass.Models;
 
 namespace KeyPass.Pages

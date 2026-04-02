@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using KeyPass.Pages;
 
 namespace KeyPass
 {
@@ -20,9 +21,17 @@ namespace KeyPass
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static MainWindow init;
+        public static string Token { get; set; } = string.Empty;
         public MainWindow()
         {
             InitializeComponent();
+            init = this;
+        }
+
+        public void OpenPages(Page page)
+        {
+            frame.Navigate(page);
         }
     }
 }

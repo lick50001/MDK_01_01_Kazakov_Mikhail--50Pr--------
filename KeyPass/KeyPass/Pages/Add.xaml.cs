@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using KeyPass.Models;
+using KeyPass.Context;
 
 namespace KeyPass.Pages
 {
@@ -39,10 +40,10 @@ namespace KeyPass.Pages
             {
                 Storage storage = new Storage()
                 {
-                    Name = tbName.Text;
-                    Url = tbUrl.Text;
-                    Login = tbLogin.Text;
-                    PasswordBox = tbPassword.Text;
+                    Name = tbName.Text,
+                    Url = tbUrl.Text,
+                    Login = tbLogin.Text,
+                    Password = tbPassword.Text
                 };
 
                 StorageContext.Add(storage);
