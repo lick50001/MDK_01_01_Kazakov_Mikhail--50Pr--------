@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyPass_Kazakov", "KeyPass_Kazakov\KeyPass_Kazakov.csproj", "{A5727BD8-C434-4DD3-997D-D9A51BE1C1FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyPass", "KeyPass\KeyPass\KeyPass.csproj", "{D7DDA8B5-3530-411D-A4FD-53B2D93AC8ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A5727BD8-C434-4DD3-997D-D9A51BE1C1FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5727BD8-C434-4DD3-997D-D9A51BE1C1FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5727BD8-C434-4DD3-997D-D9A51BE1C1FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7DDA8B5-3530-411D-A4FD-53B2D93AC8ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7DDA8B5-3530-411D-A4FD-53B2D93AC8ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7DDA8B5-3530-411D-A4FD-53B2D93AC8ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7DDA8B5-3530-411D-A4FD-53B2D93AC8ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

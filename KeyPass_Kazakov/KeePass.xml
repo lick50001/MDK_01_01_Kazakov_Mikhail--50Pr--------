@@ -6,7 +6,7 @@
     <members>
         <member name="M:KeyPass_Kazakov.Controllers.StorageController.Get(System.String)">
             <summary>
-            Получение записей хранилища для польщователя
+            Получение записей хранилища для пользователя
             </summary>
             <param name="token">JWT токен из заголовка запроса</param>
             <returs>Список записей хранилища в формате DTO(без информации о пользователе)</returs>
