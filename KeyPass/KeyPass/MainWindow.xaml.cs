@@ -25,8 +25,9 @@ namespace KeyPass
         public static string Token { get; set; } = string.Empty;
         public MainWindow()
         {
-            InitializeComponent();
             init = this;
+            InitializeComponent();
+            frame.Navigate(new Login());
         }
 
         public void OpenPages(Page page)

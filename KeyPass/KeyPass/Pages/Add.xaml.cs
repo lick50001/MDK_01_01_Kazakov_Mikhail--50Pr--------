@@ -34,9 +34,9 @@ namespace KeyPass.Pages
                 tbPassword.Text = ChangeStorage.Password;
             }
         }
-        private void Save(object sender, RoutedEventArgs e)
+        private async void Save(object sender, RoutedEventArgs e)
         {
-            if (ChangeStorage != null)
+            if (ChangeStorage == null)
             {
                 Storage storage = new Storage()
                 {
@@ -46,7 +46,7 @@ namespace KeyPass.Pages
                     Password = tbPassword.Text
                 };
 
-                StorageContext.Add(storage);
+                await StorageContext.Add(storage);
             }
             else
             {
@@ -55,7 +55,7 @@ namespace KeyPass.Pages
                 ChangeStorage.Login = tbLogin.Text;
                 ChangeStorage.Password = tbPassword.Text;
 
-                StorageContext.Update(ChangeStorage);
+                await StorageContext.Update(ChangeStorage);
             }
             MessageBox.Show("Данные сохранены");
             MainWindow.init.OpenPages(new Pages.Main());

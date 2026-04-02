@@ -10,7 +10,7 @@ namespace KeyPass_Kazakov.Controllers
         private DatabaseManager dbManager;
 
         public UserController() =>
-            this.dbManager = this.dbManager = new DatabaseManager();
+            this.dbManager = new DatabaseManager();
 
         /// <summary>
         /// Метод для аутентификации

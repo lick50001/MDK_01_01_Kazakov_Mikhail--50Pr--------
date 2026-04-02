@@ -38,12 +38,12 @@ namespace KeyPass.Pages
                 MessageBox.Show("Логин и пароль указаны не верно");
             else
             {
-                MainWindow.Token = Token; ;
+                MainWindow.Token = Token;
                 MainWindow.init.OpenPages(new Pages.Main());
             }
         }
         
-        private void BthAuth(object sender, RoutedEventArgs e)
+        private async void BthAuth(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(tbLogin.Text))
             {
@@ -57,7 +57,7 @@ namespace KeyPass.Pages
                 return;
             }
 
-            Auth(tbLogin.Text, tbPassword.Password);
+            await Auth(tbLogin.Text, tbPassword.Password);
         }
     }
 }
