@@ -1,0 +1,1 @@
+"%~dp0rndc.exe" -c "%~dp0..\..\..\userdata\Bind-9.16\rndc.conf" %*

@@ -40,5 +40,6 @@ namespace KeyPass.Pages
         {
             MainWindow.init.OpenPages(new Pages.Add());
         }
+        
     }
 }

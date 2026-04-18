@@ -8,5 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Frame x:Name="frame" NavigationUIVisibility="Hidden"/>
+        <Button Click="registr" Content="Регистр" HorizontalAlignment="Left" Margin="741,404,0,0" VerticalAlignment="Top"/>
+        <Button Click="login" Content="Вход" HorizontalAlignment="Left" Margin="690,404,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

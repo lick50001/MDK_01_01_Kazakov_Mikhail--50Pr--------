@@ -43,5 +43,12 @@
             <param name="password">Пароль</param>
             <returns> JWT токен или код ошибки</returns>
         </member>
+        <member name="M:KeyPass_Kazakov.Controllers.UserController.Register(System.String,System.String)">
+            <summary>
+            Метод для регистрации
+            </summary>
+            <param name="login">Логин</param>
+            <param name="password">Пароль</param>
+        </member>
     </members>
 </doc>

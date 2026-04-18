@@ -34,5 +34,15 @@ namespace KeyPass
         {
             frame.Navigate(page);
         }
+
+        private void registr(object sender, RoutedEventArgs e)
+        {
+            frame.Navigate(new Register());
+        }
+
+        private void login(object sender, RoutedEventArgs e)
+        {
+            frame.Navigate(new Login());
+        }
     }
 }
